@@ -1,0 +1,20 @@
+.button {
+  background-color: $c-black;
+  border-color: $c-black;
+  color: $c-white;
+  padding: 0;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &--outlined {
+    background-color: $c-white;
+    color: $c-black
+  }
+}

@@ -20,12 +20,35 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        test: /\.s[ac]ss$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                exportLocalsConvention: 'camelCase'
+              }
+            }
+          },
+          "sass-loader",
+          {
+            loader: "sass-resources-loader",
+            options: {
+              resources: path.join(__dirname, "source/settings.scss")
+            }
+          }
+        ]
       }
     ]
   },
-  resolve: { extensions: [".js", ".jsx"] },
+  resolve: {
+    extensions: [".js", ".jsx"],
+    modules: [
+      path.join(__dirname, "source"),
+      'node_modules'
+    ]
+  },
   devServer: {
     contentBase: path.join(__dirname, "public/"),
     port: 3000,
